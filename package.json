@@ -1,0 +1,19 @@
+{
+  "name": "axetra",
+  "version": "1.0.0",
+  "description": "A basic app to handle tasks.",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmvdbijl7/axetra.git"
+  },
+  "author": "Patrick van der Bijl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pmvdbijl7/axetra/issues"
+  },
+  "homepage": "https://github.com/pmvdbijl7/axetra#readme"
+}
