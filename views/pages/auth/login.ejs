@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../../partials/_head'); %>
+	</head>
+	<body>
+		<main>
+			<section class="auth">
+				<div class="auth-container">
+					<h1>Login to <span class="highlight">Axetra</span></h1>
+
+					<form action="/login" method="post">
+						<div class="form-group">
+							<label for="email">Email Address</label>
+							<input
+								type="email"
+								name="email"
+								id="email"
+								value="<% if(formData) { %><%= formData.email %><% } %>"
+								autofocus
+							/>
+
+							<% if (errors) { %> <% errors.forEach((error) => {
+							%> <% if (error.path == 'email') { %>
+							<p class="msg-error"><%= error.msg %></p>
+							<% } %> <% }) %> <% } %>
+						</div>
+
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input
+								type="password"
+								name="password"
+								id="password"
+							/>
+
+							<% if (errors) { %> <% errors.forEach((error) => {
+							%> <% if (error.path == 'password') { %>
+							<p class="msg-error"><%= error.msg %></p>
+							<% } %> <% }) %> <% } %>
+						</div>
+
+						<div class="form-group">
+							<button type="submit">Login</button>
+						</div>
+					</form>
+
+					<p>
+						Don't have an account yet? <a href="/signup">Sign up</a>
+					</p>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>

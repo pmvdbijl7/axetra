@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../partials/_head'); %>
+	</head>
+	<body>
+		<main>
+			<h1>Welcome <%= authUser.first_name %></h1>
+
+			<form action="/logout?_method=DELETE" method="post">
+				<button type="submit">Logout</button>
+			</form>
+		</main>
+	</body>
+</html>

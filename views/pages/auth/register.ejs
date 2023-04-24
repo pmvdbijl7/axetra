@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../../partials/_head'); %>
+	</head>
+	<body>
+		<main>
+			<section class="auth">
+				<div class="auth-container">
+					<h1>Sign up to <span class="highlight">Axetra</span></h1>
+
+					<form action="/signup" method="post">
+						<div class="form-group">
+							<label for="first_name">First Name</label>
+							<input
+								type="text"
+								name="first_name"
+								id="first_name"
+								value="<% if(formData) { %><%= formData.first_name %><% } %>"
+								autofocus
+							/>
+
+							<% if (errors) { %> <% errors.forEach((error) => {
+							%> <% if (error.path == 'first_name') { %>
+							<p class="msg-error"><%= error.msg %></p>
+							<% } %> <% }) %> <% } %>
+						</div>
+
+						<div class="form-group">
+							<label for="last_name">Last Name</label>
+							<input
+								type="text"
+								name="last_name"
+								id="last_name"
+								value="<% if(formData) { %><%= formData.last_name %><% } %>"
+							/>
+
+							<% if (errors) { %> <% errors.forEach((error) => {
+							%> <% if (error.path == 'last_name') { %>
+							<p class="msg-error"><%= error.msg %></p>
+							<% } %> <% }) %> <% } %>
+						</div>
+
+						<div class="form-group">
+							<label for="email">Email Address</label>
+							<input
+								type="email"
+								name="email"
+								id="email"
+								value="<% if(formData) { %><%= formData.email %><% } %>"
+							/>
+
+							<% if (errors) { %> <% errors.forEach((error) => {
+							%> <% if (error.path == 'email') { %>
+							<p class="msg-error"><%= error.msg %></p>
+							<% } %> <% }) %> <% } %>
+						</div>
+
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input
+								type="password"
+								name="password"
+								id="password"
+								value="<% if(formData) { %><%= formData.password %><% } %>"
+							/>
+
+							<% if (errors) { %> <% errors.forEach((error) => {
+							%> <% if (error.path == 'password') { %>
+							<p class="msg-error"><%= error.msg %></p>
+							<% } %> <% }) %> <% } %>
+						</div>
+
+						<div class="form-group">
+							<label for="password_confirm"
+								>Confirm Password</label
+							>
+							<input
+								type="password"
+								name="password_confirm"
+								id="password_confirm"
+								value="<% if(formData) { %><%= formData.password_confirm %><% } %>"
+							/>
+
+							<% if (errors) { %> <% errors.forEach((error) => {
+							%> <% if (error.path == 'password_confirm') { %>
+							<p class="msg-error"><%= error.msg %></p>
+							<% } %> <% }) %> <% } %>
+						</div>
+
+						<div class="form-group">
+							<button type="submit">Sign up</button>
+						</div>
+					</form>
+
+					<p>Already have an account? <a href="/login">Login</a></p>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>
