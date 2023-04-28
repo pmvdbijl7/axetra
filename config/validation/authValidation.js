@@ -79,7 +79,7 @@ const registerValidation = [
 	},
 ];
 
-// Validation for the login form
+// Login form
 const loginValidation = [
 	body("email")
 		.notEmpty()
@@ -158,4 +158,54 @@ const loginValidation = [
 	},
 ];
 
-module.exports = { registerValidation, loginValidation };
+// Forgot password form
+forgotPasswordValidation = [
+	body("email")
+		.notEmpty()
+		.withMessage("Email address is required")
+		.bail()
+		.isEmail()
+		.withMessage("This is not a valid email address")
+		.bail()
+		.custom((value, { req }) => {
+			return new Promise((resolve, reject) => {
+				// Lowercase filled in email address
+				const email = req.body.email.toLowerCase();
+
+				// Check if email address exists
+				User.findOne({ email: email }, (err, user) => {
+					if (err) {
+						return reject(new Error("Server error"));
+					}
+
+					if (!Boolean(user)) {
+						return reject(
+							new Error("This email address does not exist")
+						);
+					}
+
+					return resolve(true);
+				});
+			});
+		}),
+	(req, res, next) => {
+		const formData = {
+			email: req.body.email,
+		};
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			res.render("pages/auth/forgot_password", {
+				title: "Forgot Password",
+				formData: formData,
+				errors: errors.array(),
+			});
+		} else next();
+	},
+];
+
+module.exports = {
+	registerValidation,
+	loginValidation,
+	forgotPasswordValidation,
+};

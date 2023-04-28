@@ -36,4 +36,17 @@ router.post(
 // Logout
 router.delete("/logout", authController.logout);
 
+// Password reset
+router.get(
+	"/forgot-password",
+	accessController.checkNotAuthenticated,
+	authController.forgotPasswordGet
+);
+router.post(
+	"/forgot-password",
+	accessController.checkNotAuthenticated,
+	authValidation.forgotPasswordValidation,
+	authController.forgotPasswordPost
+);
+
 module.exports = router;
